@@ -1,0 +1,45 @@
+    <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <h1>Add New Toy</h1>
+        </Grid>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={6}>
+          <TextField
+            label="name"
+            fullWidth
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+          <TextField
+            label="price"
+            fullWidth
+            value={price}
+            onChange={(e) => {
+              setPrice(e.target.value);
+            }}
+          />
+        </Grid>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={9}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(e) => {
+              toyService
+                .addToy({ name, price })
+                .then((data) => {
+                  console.log(data);
+                  props.history.push("/toys");
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }}
+          >
+            Add New
+          </Button>
+        </Grid>
+      </Grid>
